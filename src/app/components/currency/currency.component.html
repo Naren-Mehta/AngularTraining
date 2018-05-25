@@ -1,0 +1,8 @@
+<p>Currency: 
+
+    <select  (change)="changeSelectedCurrency(selectedCurrencyCode.value)" #selectedCurrencyCode >
+        <option *ngFor="let currency of currencies">{{currency}}
+        </option>
+    </select>
+
+</p>

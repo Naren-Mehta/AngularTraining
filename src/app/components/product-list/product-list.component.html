@@ -1,0 +1,7 @@
+
+<h1>Welcome to the Product list</h1>
+
+ <div *ngFor="let product of productList;">
+    <app-product [prodData]="product" [selectedCurrency]="selectedCurrency" 
+    (addProduct)="sendProductToApp($event)"></app-product>
+  </div>

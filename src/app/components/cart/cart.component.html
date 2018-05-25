@@ -1,0 +1,25 @@
+<table  >
+<thead>
+  <tr>
+      <td>Name</td>
+        <td>Cost</td>
+        <td>Qty</td>
+        <td>total</td>
+  </tr>
+  
+  
+</thead>
+
+ <tbody>
+  <tr *ngFor="let item of cartItems">
+    <td>{{item.productName}}</td>
+    <td>{{item.productCost}}</td>
+<td>
+  <input type="number" [(ngModel)]="item.qty" />
+</td>   
+<td>
+  {{item.productCost * item.qty }}
+</td> 
+  </tr>
+</tbody> 
+  </table>

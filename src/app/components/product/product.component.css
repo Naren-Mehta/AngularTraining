@@ -1,0 +1,6 @@
+.productBlock{
+    width: 200px;height:250px;
+    border: 10px solid gray;
+    padding: 10px;
+    margin: 20px;float:left; 
+}
