@@ -10,6 +10,7 @@ import { ConverterPipe } from './pipes/converter.pipe';
 import { CartComponent } from './components/cart/cart.component';
 import { TemplateDrivenComponent } from './components/forms/template-driven/template-driven.component';
 import { ModelDrivenComponent } from './components/forms/model-driven/model-driven.component';
+import { ShowErrorComponent } from './components/forms/show-error/show-error.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ModelDrivenComponent } from './components/forms/model-driven/model-driv
     ConverterPipe,
     CartComponent,
     TemplateDrivenComponent,
-    ModelDrivenComponent
+    ModelDrivenComponent,
+    ShowErrorComponent
   ],
   imports: [
     BrowserModule,
