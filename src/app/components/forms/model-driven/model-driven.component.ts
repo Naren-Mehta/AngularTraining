@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormGroup, FormControl, Validators} from '@angular/forms'
 
 @Component({
   selector: 'app-model-driven',
@@ -7,7 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModelDrivenComponent implements OnInit {
 
-  constructor() { }
+
+  userForm : FormGroup =null;
+
+
+  constructor() { 
+
+this.userForm=new FormGroup({
+  name: new FormControl(null, [Validators.required, Validators.minLength(5)]),
+  age: new FormControl(null, [Validators.required]),
+  email: new FormControl(null, [Validators.required, Validators.email]),
+  address: new FormGroup({
+    city: new FormControl(null, [Validators.required]),
+    pincode: new FormControl(null, [Validators.required]),
+  })
+})
+
+  }
 
   ngOnInit() {
   }

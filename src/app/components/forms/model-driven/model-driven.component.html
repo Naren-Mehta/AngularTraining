@@ -1,3 +1,37 @@
-<p>
-  model-driven works!
-</p>
+<form [formGroup]= "userForm">
+
+  <label>
+    Name
+  </label><br/>
+
+  <input type="text" formControlName="name"/> <br/>
+
+  <label>
+    Age
+    </label><br/>
+  
+    <input type="number" formControlName="age"/><br/>
+  
+    
+
+    <label>
+      Email
+    </label><br/>
+    
+      <input type="email" formControlName="email"/><br/>
+    
+      
+      <div ngModelGroup="address">
+          <label>City</label><br/>
+          <input type="text" name="city" /><br/>
+    
+          <label>Pincode</label><br/>
+          <input type="text" name="pincode"/><br/>
+      </div>
+    
+      <input type="submit" value="submit" style="background-color: skyblue"/>
+
+
+</form>
+
+<p>{{userForm.value | json}}</p>
