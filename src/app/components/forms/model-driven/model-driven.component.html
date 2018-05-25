@@ -21,12 +21,21 @@
       <input type="email" formControlName="email"/><br/>
     
       
-      <div ngModelGroup="address">
+      <div formGroupName="address">
           <label>City</label><br/>
-          <input type="text" name="city" /><br/>
-    
+          <input type="text" formControlName="city" /><br/>
+        <div *ngIf="addressObj.get('pincode').touched || addressObj.get('pincode').dirty">
+            <span *ngIf="addressObj.get('pincode').hasError('zipCode')">
+              Valid pin code is
+
+              <!-- {{addressObj.get('pincode').errors.zipCode.validpincode}} -->
+              {{addressObj.get('pincode').getError('zipCode').validpincode}}
+
+            </span>
+        </div>
+
           <label>Pincode</label><br/>
-          <input type="text" name="pincode"/><br/>
+          <input type="text" formControlName="pincode"/><br/>
       </div>
     
       <input type="submit" value="submit" style="background-color: skyblue"/>
