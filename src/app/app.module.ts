@@ -11,6 +11,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { TemplateDrivenComponent } from './components/forms/template-driven/template-driven.component';
 import { ModelDrivenComponent } from './components/forms/model-driven/model-driven.component';
 import { ShowErrorComponent } from './components/forms/show-error/show-error.component';
+import { CalendarDirective } from './drectives/calendar.directive';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ShowErrorComponent } from './components/forms/show-error/show-error.com
     CartComponent,
     TemplateDrivenComponent,
     ModelDrivenComponent,
-    ShowErrorComponent
+    ShowErrorComponent,
+    CalendarDirective
   ],
   imports: [
     BrowserModule,
