@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router,ActivatedRoute } from '@angular/router/';
 
 @Component({
   selector: 'app-template-driven',
@@ -11,11 +12,15 @@ export class TemplateDrivenComponent implements OnInit {
   @ViewChild('userForm')
   formData: NgForm;
 
-  constructor() { }
+  constructor(private router: Router, private activeRoute: ActivatedRoute) { }
 
   ngOnInit() { }
 
   saveData() {
+    this.router.navigate(
+      ['model',this.formData.value['name']],
+      {relativeTo: this.activeRoute.parent});
+
     if (this.formData.valid) {
       console.log(this.formData);
     }

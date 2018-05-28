@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { zipCodeValidator } from '../validators';
 import { UserDataService } from '../../../services/user-data.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-model-driven',
@@ -13,7 +14,7 @@ export class ModelDrivenComponent implements OnInit {
 
   userForm: FormGroup = null;
 
-  constructor(private uService: UserDataService) {
+  constructor(private uService: UserDataService, private activeRoute: ActivatedRoute) {
     this.userForm = new FormGroup({
       name: new FormControl(null, [Validators.required, Validators.minLength(5)]),
       age: new FormControl(null, [Validators.required]),
@@ -26,6 +27,9 @@ export class ModelDrivenComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.activeRoute.paramMap.subscribe(
+      (par) =>this.userForm.patchValue({name: par.get('name')})
+    );
   }
 
   public get addressObj(): FormGroup {

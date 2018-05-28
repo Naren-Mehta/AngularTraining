@@ -20,6 +20,24 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { CartService } from './services/cart.service';
 import { CurrencyService } from './services/currency.service';
+import { RouterModule,Routes } from '@angular/router';
+import { AuthGuard } from 'src/app/services/auth.guard';
+
+
+
+const routes: Routes = [
+  {path:'', redirectTo:'/products', pathMatch:'full'},
+  { path: 'products', component: ProductListComponent },
+  { path: 'cart',      component: CartComponent },
+  {path:'forms', canActivate:[AuthGuard],children:[
+    {path:'template',component:TemplateDrivenComponent},
+    {path:'model/:name',component:ModelDrivenComponent},
+    {path:'dynamic',component:DynamicFormsComponent}
+  ]}
+
+  // {path:'**', component: ErrorCompo}
+]
+
 
 @NgModule({
   declarations: [
@@ -39,7 +57,11 @@ import { CurrencyService } from './services/currency.service';
   ],
   imports: [
     BrowserModule, FormsModule, ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(
+      routes,
+      { enableTracing: true } // <-- debugging purposes only
+    )
   ],
   providers: [CartService, CurrencyService],
   bootstrap: [AppComponent]

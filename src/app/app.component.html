@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <div class="row mb-4 bg-dark p-2">
         <div class="col-md-2 text-white">
             <h3>MyShop</h3>
@@ -15,8 +15,16 @@
             <app-cart></app-cart>
         </div>
     </div>
-</div>
+</div> -->
 
 <!-- <app-template-driven></app-template-driven> -->
 <!-- <app-model-driven></app-model-driven> -->
 <!-- <app-dynamic-forms></app-dynamic-forms> -->
+
+<div class="container-fluid">
+
+    <a routerLink="/products">Products</a>
+    <a routerLink="/cart">Cart</a>
+    <a routerLink="/test">404</a>
+    <router-outlet></router-outlet>
+</div>
