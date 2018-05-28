@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { AppComponent } from './app.component';
 import { DemoComponent } from './demo/demo.component';
 import { ProductComponent } from './components/product/product.component';
@@ -11,7 +12,14 @@ import { CartComponent } from './components/cart/cart.component';
 import { TemplateDrivenComponent } from './components/forms/template-driven/template-driven.component';
 import { ModelDrivenComponent } from './components/forms/model-driven/model-driven.component';
 import { ShowErrorComponent } from './components/forms/show-error/show-error.component';
-import { CalendarDirective } from './drectives/calendar.directive';
+import { CalendarDirective } from './directives/calendar.directive';
+import { DynamicFormsComponent } from './components/forms/dynamic-forms/dynamic-forms.component';
+import { UserDataService } from './services/user-data.service';
+
+import { HttpClientModule } from '@angular/common/http';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { CartService } from './services/cart.service';
+import { CurrencyService } from './services/currency.service';
 
 @NgModule({
   declarations: [
@@ -25,13 +33,15 @@ import { CalendarDirective } from './drectives/calendar.directive';
     TemplateDrivenComponent,
     ModelDrivenComponent,
     ShowErrorComponent,
-    CalendarDirective
+    CalendarDirective,
+    DynamicFormsComponent,
+    UserListComponent
   ],
   imports: [
-    BrowserModule,
-    FormsModule , ReactiveFormsModule
+    BrowserModule, FormsModule, ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [CartService, CurrencyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

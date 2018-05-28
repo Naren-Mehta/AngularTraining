@@ -1,25 +1,29 @@
-<table  >
-<thead>
-  <tr>
-      <td>Name</td>
-        <td>Cost</td>
-        <td>Qty</td>
-        <td>total</td>
-  </tr>
-  
-  
-</thead>
-
- <tbody>
-  <tr *ngFor="let item of cartItems">
-    <td>{{item.productName}}</td>
-    <td>{{item.productCost}}</td>
-<td>
-  <input type="number" [(ngModel)]="item.qty" />
-</td>   
-<td>
-  {{item.productCost * item.qty }}
-</td> 
-  </tr>
-</tbody> 
-  </table>
+<ng-template #nocart>
+  <p class="text-white bg-warning p-2">Your cart is empty</p>
+</ng-template>
+<table class="table table-bordered" *ngIf="cartItems&&cartItems?.length>0;else nocart">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Cost</th>
+      <th>Qty</th>
+      <th>Total</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of cartItems;let i=index">
+      <td>{{item.productName}}</td>
+      <td>{{item.productCost | converter: currentCurrency | currency : currentCurrency}}</td>
+      <td>
+        <input type="number" [(ngModel)]="item.qty" class="form-control" />
+      </td>
+      <td>{{item.productCost * item.qty | converter: currentCurrency | currency : currentCurrency}}</td>
+      <td>
+        <button type="button" class="close" aria-label="Close" (click)="removeProduct(i)">
+          <span aria-hidden="true" class=" text-danger">&times;</span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

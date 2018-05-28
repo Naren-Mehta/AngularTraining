@@ -1,56 +1,28 @@
-<form [formGroup]= "userForm">
-
-  <label>
-    Name
-  </label><br/>
-
-  <input type="text" formControlName="name"/> <br/>
-
-  <label>
-    Age
-    </label><br/>
-  
-    <input type="number" formControlName="age"/><br/>
-  
-    
-
-    <label>
-      Email
-    </label><br/>
-    
-      <input type="email" formControlName="email"/><br/>
-    
-      
-      <div formGroupName="address">
-          <label>City</label><br/>
-          <input type="text" formControlName="city" /><br/>
-        
-
-          <label>Pincode</label><br/>
-          <input type="text" formControlName="pincode"/><br/>
-          <app-show-error [ctrl]="addressObj.get('pincode')" ></app-show-error>
-
-          <!-- <div *ngIf="addressObj.get('pincode').touched || addressObj.get('pincode').dirty">
-              <span *ngIf="addressObj.get('pincode').hasError('zipCode')">
-                Valid pin code is
-  
-                 {{addressObj.get('pincode').errors.zipCode.validpincode}}
-                {{addressObj.get('pincode').getError('zipCode').validpincode}}
-  
-              </span>
-          </div> -->
-
-
+<div class="row">
+  <div class="col-md-6 offset-md-3 bg-light">
+    <h1>Model Driven Forms</h1>
+    <form [formGroup]="userForm" (ngSubmit)="saveData()">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" formControlName="name" class="form-control" />
+        <app-show-error [ctrl]="userForm.get('name')"></app-show-error>
       </div>
-
-      <label>
-        DOB
-      </label><br/>
-      <input type="text" appCalendar />  <br/>
-    
-      <input type="submit" value="submit" style="background-color: skyblue"/>
-
-
-</form>
-
-<p>{{userForm.value | json}}</p>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="text" formControlName="email" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label>Age</label>
+        <input type="text" formControlName="age" class="form-control" />
+      </div>
+      <div formGroupName="address">
+        <label>City</label>
+        <input type="text" formControlName="city" class="form-control" />
+        <label>Pincode</label>
+        <input type="text" formControlName="pincode" class="form-control" />
+      </div>
+      <input type="submit" value="Submit" class="mt-4 btn btn-primary" />
+    </form>
+    <p>{{userForm.value | json}}</p>
+  </div>
+</div>

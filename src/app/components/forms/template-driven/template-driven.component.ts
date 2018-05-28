@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {NgForm} from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-template-driven',
@@ -8,47 +8,31 @@ import {NgForm} from '@angular/forms';
 })
 export class TemplateDrivenComponent implements OnInit {
 
-@ViewChild('userForm')
-formData:NgForm;
+  @ViewChild('userForm')
+  formData: NgForm;
 
   constructor() { }
 
-  saveData(){
+  ngOnInit() { }
 
-    if(this.formData.valid){
-      console.log(this.formData)
+  saveData() {
+    if (this.formData.valid) {
+      console.log(this.formData);
     }
-
   }
 
-  loadData(){
-    console.log("==load===");
-    const user={
-      'name':'Naren',
-      'age': '28',
-      'email': 'mike@mail.com',
-      'address': {
-        'city':'pith',
-        'pincode':'123456'
-      }
-    }
-
-   this.formData.form.setValue(user);
+  loadData() {
+    const user = {
+      'name': 'mike', 'age': '21', 'email': 'mike@mail.com',
+      'address': { 'city': 'test', 'pincode': '123456' }
+    };
+    this.formData.form.setValue(user); // full/complete updates
   }
 
-  patchData(){
-    const user={
-      'name':'Naren',
-      'address': {
-        'city':'bang',
-        'pincode':'560068'
-      }
-    }
-
-   this.formData.form.patchValue(user);
+  patchData() {
+    const user = {
+      'name': 'test', 'age': '25'
+    };
+    this.formData.form.patchValue(user);  // partial updates
   }
-
-  ngOnInit() {
-  }
-
 }

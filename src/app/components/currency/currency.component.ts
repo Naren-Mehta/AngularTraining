@@ -1,4 +1,8 @@
-import { Component, OnInit,Output,EventEmitter } from '@angular/core';
+import {
+  Component, OnInit,
+  Output, EventEmitter
+} from '@angular/core';
+import { CurrencyService } from '../../services/currency.service';
 
 @Component({
   selector: 'app-currency',
@@ -7,23 +11,18 @@ import { Component, OnInit,Output,EventEmitter } from '@angular/core';
 })
 export class CurrencyComponent implements OnInit {
 
+  currencies = ['INR', 'USD', 'EUR', 'CAD', 'GBP'];
 
-  currencies : string[]=[];
-  
-@Output()
-selectedCurrency=new EventEmitter();
+  @Output()
+  selected = new EventEmitter();
 
-  changeSelectedCurrency(currency){
-    this.selectedCurrency.emit({data:currency});
-  }
-
-  constructor() { 
-
-    this.currencies=["USD","EUR","INR","CAD","GBP"]
-
-  }
+  constructor(private cService: CurrencyService) { }
 
   ngOnInit() {
   }
 
+  selectedCurrency(val) {
+    // this.selected.emit({ data: val });
+    this.cService.updateCurrency(val);
+  }
 }

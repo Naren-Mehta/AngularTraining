@@ -7,15 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DemoComponent implements OnInit {
 
-  demoData ='test';
-  demoData2=1234;
+  demoData = 'test';
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  showAlert(){
-    alert('Hello Bhaiya');
+  showAlert() {
+    alert('hello world');
   }
 
 }

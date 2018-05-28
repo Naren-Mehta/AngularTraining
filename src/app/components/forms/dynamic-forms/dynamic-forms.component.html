@@ -1,0 +1,26 @@
+<form [formGroup]="userForm">
+  <label>Name</label>
+  <input type="text" formControlName="name" />
+  <div *ngIf="userForm.get('name').touched||userForm.get('name').dirty">
+    <span *ngIf="userForm.get('name').hasError('required')">Name is required</span>
+  </div>
+  <label>Age</label>
+  <input type="text" formControlName="age" />
+  <label>Email</label>
+  <input type="text" formControlName="email" />
+  <div formArrayName="addresses">
+    <button type="button" (click)="addAddress()">Add</button>
+    <div *ngFor="let c of addressObj.controls;let i=index" [formGroupName]="i">
+      <label>City</label>
+      <input type="text" formControlName="city" />
+      <app-show-error [ctrl]="c.get('city')"></app-show-error>
+      <label>Pincode</label>
+      <input type="text" formControlName="pincode" />
+      <app-show-error [ctrl]="c.get('pincode')"></app-show-error>
+      <button type="button" (click)="removeAddress(i)" *ngIf="addressObj.controls.length>1">Remove</button>
+    </div>
+  </div>
+  <input type="submit" value="Submit" />
+</form>
+
+<p>{{ userForm.value | json }}</p>

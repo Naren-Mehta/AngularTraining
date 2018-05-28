@@ -1,5 +1,4 @@
-import { Component,Input} from '@angular/core';
-import {Product} from './components/product/product';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,30 +6,14 @@ import {Product} from './components/product/product';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  // currencyCode = 'INR';
 
-  selectedCurrency:string=null;
+  // currentCurrency(ev) {
+  //   this.currencyCode = ev.data;
+  // }
 
-  cartItems: Product[]=[];
-
-  currentCurrency(event){
-   // console.log(event);
-    this.selectedCurrency=event.data;
-  }
-
-  addProductToCart(event){
-
-   const productWithQty= {...event.product, qty:1};
-
-  //  if(this.cartItems.length >0){
-  //   if(this.cartItems.filter(x => x.productId == productWithQty.productId)[0])){
-
-  //   }
-  //  }
-  
-  //  this.cartItems.push(productWithQty);
-
-  this.cartItems=[...this.cartItems, productWithQty];
-  }
-
-  title = 'app';
+  // addProductToCart(ev) {
+  //   const prod = { ...ev.product, qty: 1 };
+  //   this.cartData = [...this.cartData, prod];
+  // }
 }

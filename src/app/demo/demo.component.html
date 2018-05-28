@@ -1,21 +1,17 @@
 <h3>One way data binding</h3>
 <h4>String interpolation</h4>
-<p>{{demoData}}</p>
+<p>{{ demoData }}</p>
+<p>{{ 1+6 }}</p>
 
-<p>{{(1+7)}}</p>
-
-
-<h4>Property binding</h4>
+<h4>Property bindings</h4>
 <p>
-    <input type="text" [value]="demoData"> <br/>
-    <input type="text" [value]="demoData2">
+  <input type="text" [value]="demoData" />
 </p>
 
-<h4>Event Binding</h4>
-
+<h3>Event Bindings</h3>
 <button (click)="showAlert()">Click Me</button>
 
 <h3>Two way data binding</h3>
 <p>
-    <input type="text" [(ngModel)]="demoData">
+  <input type="text" [(ngModel)]="demoData" />
 </p>

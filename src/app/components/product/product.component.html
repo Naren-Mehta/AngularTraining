@@ -1,13 +1,13 @@
-<div class="productBlock">
-  <img src="{{prodData.productImage}}" style="height: 100px;width:200px"/>
-  <h3>{{prodData.productName| uppercase}}</h3>
-  <h4>{{prodData.productCost | converter:selectedCurrency |currency : selectedCurrency}}</h4>
-  <button *ngIf="prodData.productStock;else outOfStockBlock" (click)="addToCart(prodData)">Add to Cart</button>
-
-  <ng-template #outOfStockBlock>
-    <p *ngIf="!prodData.productStock" style="color: red">Out of stock</p>
+<div class="m-2 p-2 shadow">
+  <img [src]="productData.productImage" class="img-thumbnail" />
+  <h3>{{productData.productName | uppercase}}</h3>
+  <h4>
+    {{productData.productCost | converter: ccode | currency : ccode :'symbol':'2.1' }}
+  </h4>
+  <button (click)="addToCart()" *ngIf="productData.productStock;else outofstock" class="btn btn-sm btn-secondary">
+    add to cart
+  </button>
+  <ng-template #outofstock>
+    <p class="bg-danger text-white">Out of stock</p>
   </ng-template>
-  
 </div>
-
-

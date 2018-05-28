@@ -1,29 +1,35 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3 bg-light">
+    <h1>Template Driven Forms</h1>
+    <button (click)="loadData()" class="btn btn-dark btn-sm mr-2">Load</button>
+    <button (click)="patchData()" class="btn btn-dark btn-sm">Patch</button>
 
-<button (click)="loadData()">Load Data</button>
-<button (click)="patchData()">Patch Data</button>
-
-<form (ngSubmit)="saveData()" #userForm="ngForm">
-  <label>Name</label><br/>
-  <input type="text" name="name" #name="ngModel" ngModel required minlength="5"/><br/>
-  <div *ngIf="name.touched || name.dirty">
-    <span *ngIf="name.errors?.required" style="color: red">Name is required.</span>
-    <span *ngIf="name.errors?.minlength" style="color: red">Min 5 char required.</span>
+    <form #userForm="ngForm" (ngSubmit)="saveData()">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" name="name" ngModel required #name="ngModel" class="form-control" />
+        <app-show-error [ctrl]="name"></app-show-error>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="text" name="email" class="form-control" ngModel required #email="ngModel" />
+        <app-show-error [ctrl]="email"></app-show-error>
+      </div>
+      <div class="form-group">
+        <label>Age</label>
+        <input type="text" name="age" class="form-control" ngModel required />
+      </div>
+      <div ngModelGroup="address" class="form-group">
+        <label>City</label>
+        <input type="text" name="city" ngModel class="form-control" />
+        <label>Pincode</label>
+        <input type="text" name="pincode" ngModel class="form-control" />
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Submit" [disabled]="userForm.invalid" class="btn btn-success btn-sm" />
+      </div>
+    </form>
+    <p>{{userForm.value | json}}</p>
   </div>
-  <label>Age</label><br/>
-  <input type="text" name="age" #age="ngModel" ngModel required/><br/>
 
-  <label>Email</label><br/>
-  <input type="email" name="email" #email="ngModel" ngModel required/><br/>
-
-  <div ngModelGroup="address">
-      <label>City</label><br/>
-      <input type="text" name="city" #city="ngModel" ngModel required/><br/>
-
-      <label>Pincode</label><br/>
-      <input type="text" name="pincode" #pincode="ngModel" ngModel required/><br/>
-  </div>
-
-  <input type="submit" value="submit" style="background-color: skyblue"/>
-</form>
-
-<p> {{userForm.value | json}} </p>
+</div>

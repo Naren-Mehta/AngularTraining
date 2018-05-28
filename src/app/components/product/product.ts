@@ -1,8 +1,7 @@
 export class Product {
-    
-    productId:number;
+    productId: number;
     productName: string;
-    productImage:string;
-    productCost: number
+    productImage: string;
+    productCost: number;
     productStock: boolean;
 }

@@ -1,75 +1,42 @@
-import { Component, OnInit ,Input,EventEmitter,Output} from '@angular/core';
-import {Product} from '../product/product';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Product } from '../product/product';
+import { products } from './products';
+import { CartService } from '../../services/cart.service';
+import { CurrencyService } from '../../services/currency.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, OnDestroy {
 
-  @Input()
-  selectedCurrency:string =null;
-
-  productList:Product[] = [];
+  currentCurrency: string;
 
   @Output()
-  addItem=new EventEmitter();
+  addItem = new EventEmitter();
 
-
-  sendProductToApp (eve){
-    console.log("===="+eve.data);
-    this.addItem.emit({product : eve.data});
-
-  }
-  constructor() { 
-
-    this.productList=[{
-      productId:1100,
-      productName:'Sony DSLR D5300',
-      productImage:'http://product-image.bdstall.com/big_14734.jpg',
-      productCost:50000,
-      productStock:true
-    },
-    {
-      productId:1101,
-      productName:'Sony DSLR D5400',
-      productImage:'http://product-image.bdstall.com/big_14734.jpg',
-      productCost:55000,
-      productStock:false
-    },
-    {
-      productId:1102,
-      productName:'Sony DSLR D5200',
-      productImage:'http://product-image.bdstall.com/big_14734.jpg',
-      productCost:60000,
-      productStock:true
-    },{
-      productId:1103,
-      productName:'Canon DSLR XYZ',
-      productImage:'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5792/5792700_sd.jpg',
-      productCost:64000,
-      productStock:false
-    },
-    {
-      productId:1104,
-      productName:'Canon DSLR yyy',
-      productImage:'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5792/5792700_sd.jpg',
-      productCost:70000,
-      productStock:true
-    },
-    {
-      productId:1105,
-      productName:'Canon DSLR rrr',
-      productImage:'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5792/5792700_sd.jpg',
-      productCost:74000,
-      productStock:true
-    }
-  ]
-
+  productList: Product[];
+  currService$;
+  constructor(private cService: CartService, private currService: CurrencyService) {
+    this.productList = products;
   }
 
   ngOnInit() {
+    this.currService$ = this.currService.currencyObservable.subscribe(
+      (code) => this.currentCurrency = <string>code
+    );
+  }
+
+  sendDataToApp(ev) {
+    this.cService.addToCart(ev.data);
+    // this.router.navigate(['cart'])
+    // this.addItem.emit({ product: ev.data });
+  }
+
+  ngOnDestroy() {
+    this.currService$.unsubscribe();
   }
 
 }

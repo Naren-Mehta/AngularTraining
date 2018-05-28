@@ -6,34 +6,23 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ConverterPipe implements PipeTransform {
 
   transform(value: number, code: string): number {
-
-    console.log(value);
-    console.log(code);
-
-
-    if(isNaN(value)){
+    if (isNaN(value)) {
       return null;
     }
-
-    return this.changeValue(code, value);
+    return this.changeValue(value, code);
   }
 
-
-  changeValue(code, cost){
-    switch(code){
-      case 'USD' : cost/=68;
-      break;
-      case 'EUR' : cost/=87;
-      break;
-
-      case 'GBP' : cost/=78;
-      break;
-
-      case 'CAD' : cost/=51;
-      break;
+  changeValue(cost, code) {
+    switch (code) {
+      case 'USD': cost /= 68;
+        break;
+      case 'EUR': cost /= 87;
+        break;
+      case 'GBP': cost /= 78;
+        break;
+      case 'CAD': cost /= 51;
+        break;
     }
-
     return cost;
   }
-
 }
